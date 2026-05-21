@@ -1,0 +1,249 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --black: #050510;
+  --dark: #0a0a1a;
+  --surface: #111128;
+  --surface-2: #1a1a3e;
+  --blue: #0066FF;
+  --cyan: #00D4FF;
+  --purple: #6B00FF;
+  --gold: #FFB800;
+  --orange: #FF6B00;
+  --green: #00FF88;
+  --red: #FF3366;
+  --white: #ffffff;
+  --gray: #8888aa;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: #0066FF20 transparent;
+}
+
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: var(--black);
+  color: var(--white);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #0066FF30; border-radius: 999px; }
+::selection { background: #0066FF40; color: #fff; }
+
+/* ===== TYPOGRAPHY ===== */
+.font-display { font-family: 'Space Grotesk', sans-serif; }
+.font-body { font-family: 'Inter', sans-serif; }
+
+/* ===== GRADIENT TEXTS ===== */
+.text-gradient-blue {
+  background: linear-gradient(135deg, #0066FF, #00D4FF);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.text-gradient-gold {
+  background: linear-gradient(135deg, #FFB800, #FF6B00);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.text-gradient-fire {
+  background: linear-gradient(135deg, #FF3366, #FF6B00, #FFB800);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.text-gradient-cyber {
+  background: linear-gradient(135deg, #6B00FF, #0066FF, #00D4FF);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.text-gradient-hero {
+  background: linear-gradient(180deg, #ffffff 0%, #ffffff 40%, #00D4FF 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ===== GLASS ===== */
+.glass {
+  background: rgba(17, 17, 40, 0.5);
+  backdrop-filter: blur(40px) saturate(150%);
+  -webkit-backdrop-filter: blur(40px) saturate(150%);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+.glass-strong {
+  background: rgba(17, 17, 40, 0.8);
+  backdrop-filter: blur(60px) saturate(180%);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+/* ===== GLOWS ===== */
+.glow-blue { box-shadow: 0 0 30px #0066FF30, 0 0 60px #0066FF10; }
+.glow-cyan { box-shadow: 0 0 30px #00D4FF30, 0 0 60px #00D4FF10; }
+.glow-gold { box-shadow: 0 0 30px #FFB80030, 0 0 60px #FFB80010; }
+.glow-purple { box-shadow: 0 0 30px #6B00FF30, 0 0 60px #6B00FF10; }
+
+/* ===== NOISE OVERLAY ===== */
+.noise::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  opacity: 0.03; pointer-events: none; z-index: 9999;
+  mix-blend-mode: overlay;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-20px)} }
+@keyframes pulse-ring { 0%{transform:scale(1);opacity:1} 100%{transform:scale(1.5);opacity:0} }
+@keyframes shimmer { 0%{background-position:-200% 0} 100%{background-position:200% 0} }
+@keyframes orbit { 0%{transform:rotate(0deg) translateX(100px) rotate(0deg)} 100%{transform:rotate(360deg) translateX(100px) rotate(-360deg)} }
+@keyframes gradient-shift { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+@keyframes scanline { 0%{transform:translateY(-100%)} 100%{transform:translateY(100vh)} }
+@keyframes dash { to { stroke-dashoffset: 0; } }
+@keyframes typewriter { from{width:0} to{width:100%} }
+@keyframes blink { 50%{border-color:transparent} }
+@keyframes morph {
+  0%,100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+  50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+}
+@keyframes reveal {
+  from { clip-path: inset(0 100% 0 0); }
+  to { clip-path: inset(0 0 0 0); }
+}
+
+.animate-float { animation: float 6s ease-in-out infinite; }
+.animate-morph { animation: morph 8s ease-in-out infinite; }
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.04) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: shimmer 3s linear infinite;
+}
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient-shift 4s ease infinite;
+}
+
+/* ===== BUTTONS ===== */
+.btn-primary {
+  @apply relative inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full
+         font-semibold text-sm tracking-wide uppercase overflow-hidden
+         transition-all duration-500 ease-out
+         hover:scale-[1.02] active:scale-[0.98]
+         disabled:opacity-40 disabled:pointer-events-none;
+  background: linear-gradient(135deg, #0066FF, #0044CC);
+  color: white;
+  box-shadow: 0 4px 30px #0066FF40;
+}
+.btn-primary::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, #00D4FF, #0066FF);
+  opacity: 0; transition: opacity 0.5s;
+}
+.btn-primary:hover::before { opacity: 1; }
+.btn-primary span { position: relative; z-index: 1; }
+
+.btn-gold {
+  @apply inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full
+         font-semibold text-sm tracking-wide uppercase overflow-hidden
+         transition-all duration-500 ease-out
+         hover:scale-[1.02] active:scale-[0.98];
+  background: linear-gradient(135deg, #FFB800, #FF8C00);
+  color: #050510;
+  box-shadow: 0 4px 30px #FFB80040;
+}
+
+.btn-outline {
+  @apply inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full
+         font-semibold text-sm tracking-wide uppercase
+         border border-white/10 text-white/70
+         transition-all duration-500 ease-out
+         hover:border-white/30 hover:text-white hover:bg-white/5
+         active:scale-[0.98];
+}
+
+/* ===== CARDS ===== */
+.card-hover {
+  @apply relative overflow-hidden rounded-2xl border border-white/[0.06]
+         bg-[#111128]/50 transition-all duration-700;
+}
+.card-hover::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), #0066FF08, transparent 40%);
+  z-index: 0;
+}
+.card-hover:hover {
+  border-color: #0066FF30;
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px -10px #0066FF15;
+}
+
+/* ===== SECTION ===== */
+.section-padding {
+  @apply px-5 sm:px-8 md:px-12 lg:px-20 xl:px-28;
+}
+
+/* ===== CUSTOM CURSOR ===== */
+.cursor-dot {
+  width: 8px; height: 8px;
+  background: #0066FF;
+  border-radius: 50%;
+  position: fixed; pointer-events: none;
+  z-index: 99999;
+  transition: transform 0.1s ease;
+  mix-blend-mode: difference;
+}
+.cursor-ring {
+  width: 40px; height: 40px;
+  border: 1.5px solid #0066FF60;
+  border-radius: 50%;
+  position: fixed; pointer-events: none;
+  z-index: 99998;
+  transition: all 0.15s ease-out;
+}
+.cursor-ring.hover {
+  width: 60px; height: 60px;
+  border-color: #00D4FF80;
+  background: #00D4FF08;
+}
+
+/* ===== INPUTS ===== */
+.input-field {
+  @apply w-full bg-white/[0.03] border border-white/[0.08] rounded-xl
+         px-5 py-4 text-white text-sm font-body
+         placeholder:text-white/20
+         transition-all duration-500 ease-out
+         focus:outline-none focus:border-[#0066FF]/40
+         focus:shadow-[0_0_0_4px_rgba(0,102,255,0.08)]
+         hover:border-white/15;
+}
+
+/* ===== GRID LINE BG ===== */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(0,102,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,102,255,0.03) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+
+/* ===== DOT PATTERN ===== */
+.dot-bg {
+  background-image: radial-gradient(rgba(0,102,255,0.12) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* ===== SCROLL INDICATOR ===== */
+.scroll-progress {
+  position: fixed; top: 0; left: 0; height: 2px;
+  background: linear-gradient(90deg, #0066FF, #00D4FF);
+  z-index: 10000; transform-origin: left;
+}
